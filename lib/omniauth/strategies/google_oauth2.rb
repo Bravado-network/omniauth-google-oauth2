@@ -92,6 +92,10 @@ module OmniAuth
       def custom_build_access_token
         access_token = get_access_token(request)
 
+        if access_token.nil?
+          puts ">>>>>> omniauth-google-oauth2 failed request: #{request.inspect}"
+        end
+
         verify_hd(access_token)
         access_token
       end
